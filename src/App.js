@@ -291,7 +291,6 @@ export default function App() {
             <p>Plus a wide range of mid-range and budget options to suit your vehicle and budget.</p>
           </div>
         </section>
-
         {/* REVIEWS */}
         <section id="reviews" className="section reviews-section">
           <div className="container">
