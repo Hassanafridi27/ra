@@ -1,8 +1,22 @@
 import React, { useEffect, useState } from "react";
 import {
-  ArrowRight, BadgeCheck, Battery, Car, CheckCircle2, ChevronDown,
-  Clock3, Gauge, Headphones, MapPin, Menu, Phone, ShieldCheck,
-  Star, Truck, Wrench, X, Zap
+  ArrowRight,
+  BadgeCheck,
+  Battery,
+  Car,
+  CheckCircle2,
+  ChevronDown,
+  Clock3,
+  Gauge,
+  Headphones,
+  MapPin,
+  Menu,
+  Phone,
+  ShieldCheck,
+  Truck,
+  Wrench,
+  X,
+  Zap,
 } from "lucide-react";
 
 const PHONE = "07436 902 787";
