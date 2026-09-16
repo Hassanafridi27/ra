@@ -45,7 +45,7 @@ const slides = [
 const services = [
   {
     icon: Truck,
-    title: "Mobile Tyre Fitting",
+    title: "Mobile Tyre Replacement & Repairing",
     text: "New tyres fitted at your home, workplace or roadside.",
   },
   {
@@ -55,7 +55,7 @@ const services = [
   },
   {
     icon: Wrench,
-    title: "Tyre Repair",
+    title: "locking Nut Removals",
     text: "Puncture and tyre repair where the tyre is safe to repair.",
   },
   {
@@ -70,7 +70,7 @@ const services = [
   },
   {
     icon: ShieldCheck,
-    title: "Vehicle Health Checks",
+    title: "All Types Of Valves And Tpms Sensor Unit Replacement",
     text: "Practical checks to help keep your vehicle road-ready.",
   },
 ];
