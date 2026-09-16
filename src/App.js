@@ -7,6 +7,7 @@ import {
   Car,
   CheckCircle2,
   ChevronDown,
+  Cog,
   Clock3,
   Headphones,
   MapPin,
@@ -55,8 +56,8 @@ const services = [
   },
   {
     icon: Wrench,
-    title: "locking Nut Removals",
-    text: "Puncture and tyre repair where the tyre is safe to repair.",
+    title: "Locking Nut Removals",
+    text: "Professional removal of locking wheel nuts when the key is lost, damaged or unavailable.",
   },
   {
     icon: Cable,
@@ -69,7 +70,7 @@ const services = [
     text: "Convenient mobile battery replacement at your location.",
   },
   {
-    icon: ShieldCheck,
+    icon: Cog,
     title: "All Types Of Valves And Tpms Sensor Unit Replacement",
     text: "Practical checks to help keep your vehicle road-ready.",
   },
