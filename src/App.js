@@ -8,7 +8,6 @@ import {
   CheckCircle2,
   ChevronDown,
   Clock3,
-  Gauge,
   Headphones,
   MapPin,
   Menu,
