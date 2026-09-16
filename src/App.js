@@ -3,6 +3,7 @@ import {
   ArrowRight,
   BadgeCheck,
   Battery,
+  Cable,
   Car,
   CheckCircle2,
   ChevronDown,
@@ -27,29 +28,52 @@ const slides = [
     eyebrow: "MOBILE TYRE FITTING",
     title: "WE COME TO YOU.",
     text: "Professional tyre fitting at home, work or roadside across Manchester and surrounding areas.",
-    image: "https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=2200&q=85"
+    image: "/a.jpeg",
   },
   {
     eyebrow: "EMERGENCY TYRE SERVICE",
     title: "FLAT TYRE? WE'RE ON OUR WAY.",
     text: "Fast, practical roadside tyre support when you need to get moving again.",
-    image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=2200&q=85"
+    image: "/b.jpeg",
   },
   {
     eyebrow: "PREMIUM • MID-RANGE • BUDGET",
     title: "THE RIGHT TYRE. FITTED WHERE YOU ARE.",
     text: "Choose from a wide range of tyre options and have them professionally fitted at your location.",
-    image: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=2200&q=85"
-  }
+    image: "/c.jpeg",
+  },
 ];
-
 const services = [
-  { icon: Truck, title: "Mobile Tyre Fitting", text: "New tyres fitted at your home, workplace or roadside." },
-  { icon: Zap, title: "Emergency Call-Out", text: "Fast assistance when a tyre problem leaves you stranded." },
-  { icon: Wrench, title: "Tyre Repair", text: "Puncture and tyre repair where the tyre is safe to repair." },
-  { icon: Gauge, title: "Wheel Alignment", text: "2-wheel and 4-wheel alignment services for better handling." },
-  { icon: Battery, title: "Battery Replacement", text: "Convenient mobile battery replacement at your location." },
-  { icon: ShieldCheck, title: "Vehicle Health Checks", text: "Practical checks to help keep your vehicle road-ready." }
+  {
+    icon: Truck,
+    title: "Mobile Tyre Fitting",
+    text: "New tyres fitted at your home, workplace or roadside.",
+  },
+  {
+    icon: Zap,
+    title: "Emergency Call-Out",
+    text: "Fast assistance when a tyre problem leaves you stranded.",
+  },
+  {
+    icon: Wrench,
+    title: "Tyre Repair",
+    text: "Puncture and tyre repair where the tyre is safe to repair.",
+  },
+  {
+    icon: Cable,
+    title: "Jump Start",
+    text: "Quick and reliable battery jump-start service to get your vehicle back on the road.",
+  },
+  {
+    icon: Battery,
+    title: "Battery Replacement",
+    text: "Convenient mobile battery replacement at your location.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Vehicle Health Checks",
+    text: "Practical checks to help keep your vehicle road-ready.",
+  },
 ];
 
 const reviews = [
@@ -175,12 +199,12 @@ export default function App() {
           </div>
 
           <div className="hero-controls container">
-            <div className="slide-count"><b>0{slide + 1}</b><span>/ 0{slides.length}</span></div>
-            <div className="dots">
+            {/* <div className="slide-count"><b>0{slide + 1}</b><span>/ 0{slides.length}</span></div> */}
+            {/* <div className="dots">
               {slides.map((_, i) => (
                 <button key={i} className={i === slide ? "dot active" : "dot"} onClick={() => setSlide(i)} />
               ))}
-            </div>
+            </div> */}
           </div>
 
           <div className="booking-card-wrap container">
@@ -437,7 +461,7 @@ export default function App() {
             <a href="#services" onClick={(e) => { e.preventDefault(); scrollTo("services"); }}>Mobile Fitting</a>
             <a href="#services" onClick={(e) => { e.preventDefault(); scrollTo("services"); }}>Emergency Tyres</a>
             <a href="#services" onClick={(e) => { e.preventDefault(); scrollTo("services"); }}>Tyre Repair</a>
-            <a href="#services" onClick={(e) => { e.preventDefault(); scrollTo("services"); }}>Wheel Alignment</a>
+            <a href="#services" onClick={(e) => { e.preventDefault(); scrollTo("services"); }}>Jump Start</a>
             <a href="#services" onClick={(e) => { e.preventDefault(); scrollTo("services"); }}>Battery Replacement</a>
           </div>
           <div>
