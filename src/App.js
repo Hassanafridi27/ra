@@ -502,26 +502,26 @@ export default function App() {
 
             <div className="brands-grid">
               {[
-                { name: "Aptany", image: "/d.jpeg" },
-                { name: "Avon Tyres", image: "/avon.png" },
-                { name: "Bridgestone", image: "/bridgestone.png" },
-                { name: "Continental", image: "/continental.png" },
-                { name: "Cooper Tires", image: "/cooper.png" },
-                { name: "Davanti", image: "/davanti.png" },
+                { name: "Aptany", image: "/aptany.jpg" },
+                { name: "Avon Tyres", image: "/avon.jpg" },
+                { name: "Bridgestone", image: "/bridgestone.jpg" },
+                { name: "Continental", image: "/continental.jpg" },
+                { name: "Cooper Tires", image: "/cooper.jpg" },
+                { name: "Davanti", image: "/davanti.jpg" },
 
-                { name: "Delinte", image: "/delinte.png" },
-                { name: "Dunlop", image: "/dunlop.png" },
-                { name: "Envoy", image: "/envoy.png" },
-                { name: "Evergreen", image: "/evergreen.png" },
-                { name: "Firestone", image: "/firestone.png" },
-                { name: "Goodyear", image: "/goodyear.png" },
+                { name: "Delinte", image: "/delinte.jpg" },
+                { name: "Dunlop", image: "/dunlop.jpg" },
+                { name: "Envoy", image: "/envoy.jpg" },
+                { name: "Evergreen", image: "/evergreen.jpg" },
+                { name: "Firestone", image: "/firestone.jpg" },
+                { name: "Goodyear", image: "/goodyear.jpg" },
 
-                { name: "Hankook", image: "/hankook.png" },
-                { name: "Linglong Tire", image: "/linglong.png" },
-                { name: "Michelin", image: "/michelin.png" },
-                { name: "Pirelli", image: "/pirelli.png" },
-                { name: "Vredestein", image: "/vredestein.png" },
-                { name: "Yokohama", image: "/yokohama.png" },
+                { name: "Hankook", image: "/hankook.jpg" },
+                { name: "Linglong Tire", image: "/linglong.jpg" },
+                { name: "Michelin", image: "/michelin.jpg" },
+                { name: "Pirelli", image: "/pirelli.jpg" },
+                { name: "Vredestein", image: "/vredestein.jpg" },
+                { name: "Yokohama", image: "/yokohama.jpg" },
               ].map((brand) => (
                 <div className="brand-card" key={brand.name}>
                   <img
