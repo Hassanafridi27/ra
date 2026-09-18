@@ -502,7 +502,7 @@ export default function App() {
 
             <div className="brands-grid">
               {[
-                { name: "Aptany", image: "/aptany.png" },
+                { name: "Aptany", image: "/d.jpeg" },
                 { name: "Avon Tyres", image: "/avon.png" },
                 { name: "Bridgestone", image: "/bridgestone.png" },
                 { name: "Continental", image: "/continental.png" },
