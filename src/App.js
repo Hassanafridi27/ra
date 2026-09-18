@@ -19,9 +19,85 @@ import {
   X,
   Zap,
 } from "lucide-react";
+import "./App.css";
 
 const PHONE = "07436 902 787";
 const PHONE_LINK = "tel:+447436902787";
+
+const tyreBrands = [
+  {
+    name: "Aptany",
+    image: "YOUR_APTANY_IMAGE_URL",
+  },
+  {
+    name: "Avon Tyres",
+    image: "YOUR_AVON_IMAGE_URL",
+  },
+  {
+    name: "Bridgestone",
+    image: "YOUR_BRIDGESTONE_IMAGE_URL",
+  },
+  {
+    name: "Continental",
+    image: "YOUR_CONTINENTAL_IMAGE_URL",
+  },
+  {
+    name: "Cooper Tires",
+    image: "YOUR_COOPER_IMAGE_URL",
+  },
+  {
+    name: "Davanti",
+    image: "YOUR_DAVANTI_IMAGE_URL",
+  },
+  {
+    name: "Delinte",
+    image: "YOUR_DELINTE_IMAGE_URL",
+  },
+  {
+    name: "Dunlop",
+    image: "YOUR_DUNLOP_IMAGE_URL",
+  },
+  {
+    name: "Envoy",
+    image: "YOUR_ENVOY_IMAGE_URL",
+  },
+  {
+    name: "Evergreen",
+    image: "YOUR_EVERGREEN_IMAGE_URL",
+  },
+  {
+    name: "Firestone",
+    image: "YOUR_FIRESTONE_IMAGE_URL",
+  },
+  {
+    name: "Goodyear",
+    image: "YOUR_GOODYEAR_IMAGE_URL",
+  },
+  {
+    name: "Hankook",
+    image: "YOUR_HANKOOK_IMAGE_URL",
+  },
+  {
+    name: "Linglong Tire",
+    image: "YOUR_LINGLONG_IMAGE_URL",
+  },
+  {
+    name: "Michelin",
+    image: "YOUR_MICHELIN_IMAGE_URL",
+  },
+  {
+    name: "Pirelli",
+    image: "YOUR_PIRELLI_IMAGE_URL",
+  },
+  {
+    name: "Vredestein",
+    image: "YOUR_VREDESTEIN_IMAGE_URL",
+  },
+  {
+    name: "Yokohama",
+    image: "YOUR_YOKOHAMA_IMAGE_URL",
+  },
+];
 
 const slides = [
   {
@@ -113,39 +189,63 @@ export default function App() {
       {/* TOP STRIP */}
       <div className="top-strip">
         <div className="container top-strip-inner">
-          <span><Clock3 size={15} /> Open 7 days a week</span>
-          <span className="top-hide-mobile">Manchester & surrounding areas</span>
-          <a href={PHONE_LINK}><Phone size={15} /> {PHONE}</a>
+          <span>
+            <Clock3 size={15} /> Open 7 days a week
+          </span>
+          <span className="top-hide-mobile">
+            Manchester & surrounding areas
+          </span>
+          <a href={PHONE_LINK}>
+            <Phone size={15} /> {PHONE}
+          </a>
         </div>
       </div>
 
       {/* HEADER */}
       <header className="header">
         <div className="container nav">
-          <a className="brand" href="#home" onClick={(e) => { e.preventDefault(); scrollTo("home"); }}>
-            <div className="brand-mark"><span>RA</span></div>
+          <a
+            className="brand"
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollTo("home");
+            }}
+          >
+            <div className="brand-mark">
+              <span>RA</span>
+            </div>
             <div>
               <strong>RA MOBILE TYRES</strong>
               <small>FAST • PROFESSIONAL • MOBILE</small>
             </div>
           </a>
 
-          <button className="menu-btn" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
+          <button
+            className="menu-btn"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
           <nav className={menuOpen ? "nav-links open" : "nav-links"}>
             <button onClick={() => scrollTo("home")}>Home</button>
             <button onClick={() => scrollTo("services")}>Services</button>
-            <button onClick={() => scrollTo("how-it-works")}>How It Works</button>
+            <button onClick={() => scrollTo("how-it-works")}>
+              How It Works
+            </button>
 
             {/* AREAS MEGA DROPDOWN */}
             <div className="areas-nav">
               <button style={{ display: "flex", alignItems: "center", gap: 5 }}>
-                <MapPin size={14} /> Areas <ChevronDown size={14} className="chevron-icon" />
+                <MapPin size={14} /> Areas{" "}
+                <ChevronDown size={14} className="chevron-icon" />
               </button>
               <div className="areas-dropdown">
-                <div className="areas-dropdown-title">Coverage Areas — Manchester & Beyond</div>
+                <div className="areas-dropdown-title">
+                  Coverage Areas — Manchester & Beyond
+                </div>
                 <div className="areas-grid">
                   {areas.map((area, i) => (
                     <button
@@ -157,9 +257,30 @@ export default function App() {
                     </button>
                   ))}
                 </div>
-                <div style={{ marginTop: 16, paddingTop: 14, borderTop: "1px solid #e3e8ed", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                  <span style={{ fontSize: 11, color: "#647382" }}>Not sure? Call us to check your area.</span>
-                  <a href={PHONE_LINK} style={{ fontSize: 12, fontWeight: 800, color: "#1768a8", display: "flex", alignItems: "center", gap: 5 }}>
+                <div
+                  style={{
+                    marginTop: 16,
+                    paddingTop: 14,
+                    borderTop: "1px solid #e3e8ed",
+                    display: "flex",
+                    justifyContent: "space-between",
+                    alignItems: "center",
+                  }}
+                >
+                  <span style={{ fontSize: 11, color: "#647382" }}>
+                    Not sure? Call us to check your area.
+                  </span>
+                  <a
+                    href={PHONE_LINK}
+                    style={{
+                      fontSize: 12,
+                      fontWeight: 800,
+                      color: "#1768a8",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 5,
+                    }}
+                  >
                     <Phone size={13} /> {PHONE}
                   </a>
                 </div>
@@ -168,7 +289,9 @@ export default function App() {
 
             <button onClick={() => scrollTo("reviews")}>Reviews</button>
             <button onClick={() => scrollTo("contact")}>Contact</button>
-            <a className="nav-call btn" href={PHONE_LINK}><Phone size={17} /> Call Now</a>
+            <a className="nav-call btn" href={PHONE_LINK}>
+              <Phone size={17} /> Call Now
+            </a>
           </nav>
         </div>
       </header>
@@ -176,15 +299,23 @@ export default function App() {
       <main>
         {/* HERO */}
         <section id="home" className="hero">
-          <div className="hero-bg" style={{ backgroundImage: `url(${current.image})` }} />
+          <div
+            className="hero-bg"
+            style={{ backgroundImage: `url(${current.image})` }}
+          />
           <div className="hero-overlay" />
           <div className="container hero-content">
             <div className="hero-copy">
-              <div className="eyebrow"><span /> {current.eyebrow}</div>
+              <div className="eyebrow">
+                <span /> {current.eyebrow}
+              </div>
               <h1>{current.title}</h1>
               <p>{current.text}</p>
               <div className="hero-actions">
-                <button className="btn btn-yellow" onClick={() => scrollTo("booking")}>
+                <button
+                  className="btn btn-yellow"
+                  onClick={() => scrollTo("booking")}
+                >
                   Book a Mobile Fitter <ArrowRight size={19} />
                 </button>
                 <a className="btn btn-outline" href={PHONE_LINK}>
@@ -192,8 +323,12 @@ export default function App() {
                 </a>
               </div>
               <div className="hero-trust">
-                <span><BadgeCheck size={18} /> Professional service</span>
-                <span><BadgeCheck size={18} /> 4.9 Google rating</span>
+                <span>
+                  <BadgeCheck size={18} /> Professional service
+                </span>
+                <span>
+                  <BadgeCheck size={18} /> 4.9 Google rating
+                </span>
               </div>
             </div>
           </div>
@@ -210,36 +345,66 @@ export default function App() {
           <div className="booking-card-wrap container">
             <div id="booking" className="booking-card">
               <div className="booking-heading">
-                <span className="booking-icon"><Car size={23} /></span>
+                <span className="booking-icon">
+                  <Car size={23} />
+                </span>
                 <div>
                   <span className="mini-label">GET STARTED</span>
                   <h2>Find tyres for your vehicle</h2>
                 </div>
               </div>
               <div className="booking-tabs">
-                <button className={bookingMode === "reg" ? "active" : ""} onClick={() => setBookingMode("reg")}>Registration</button>
-                <button className={bookingMode === "size" ? "active" : ""} onClick={() => setBookingMode("size")}>Tyre Size</button>
+                <button
+                  className={bookingMode === "reg" ? "active" : ""}
+                  onClick={() => setBookingMode("reg")}
+                >
+                  Registration
+                </button>
+                <button
+                  className={bookingMode === "size" ? "active" : ""}
+                  onClick={() => setBookingMode("size")}
+                >
+                  Tyre Size
+                </button>
               </div>
               {bookingMode === "reg" ? (
                 <div className="booking-form">
-                  <label><span>Vehicle registration</span><input placeholder="e.g. AB12 CDE" /></label>
-                  <label><span>Postcode</span><input placeholder="e.g. M43 7UR" /></label>
-                  <button className="btn btn-blue">Search Tyres <ArrowRight size={18} /></button>
+                  <label>
+                    <span>Vehicle registration</span>
+                    <input placeholder="e.g. AB12 CDE" />
+                  </label>
+                  <label>
+                    <span>Postcode</span>
+                    <input placeholder="e.g. M43 7UR" />
+                  </label>
+                  <button className="btn btn-blue">
+                    Search Tyres <ArrowRight size={18} />
+                  </button>
                 </div>
               ) : (
                 <div className="booking-form size-form">
                   {["Width", "Profile", "Rim", "Speed"].map((x) => (
-                    <label key={x}><span>{x}</span>
+                    <label key={x}>
+                      <span>{x}</span>
                       <select defaultValue="">
-                        <option value="" disabled>Select</option>
-                        <option>205</option><option>215</option><option>225</option><option>235</option>
+                        <option value="" disabled>
+                          Select
+                        </option>
+                        <option>205</option>
+                        <option>215</option>
+                        <option>225</option>
+                        <option>235</option>
                       </select>
                     </label>
                   ))}
-                  <button className="btn btn-blue">Search Tyres <ArrowRight size={18} /></button>
+                  <button className="btn btn-blue">
+                    Search Tyres <ArrowRight size={18} />
+                  </button>
                 </div>
               )}
-              <small className="booking-note">Please double-check your tyre size before booking.</small>
+              <small className="booking-note">
+                Please double-check your tyre size before booking.
+              </small>
             </div>
           </div>
         </section>
@@ -247,10 +412,34 @@ export default function App() {
         {/* TRUST ROW */}
         <section className="trust-row">
           <div className="container trust-grid">
-            <div><CheckCircle2 /><span><b>4.9 / 5</b><small>Google rating</small></span></div>
-            <div><Truck /><span><b>Mobile service</b><small>We come to you</small></span></div>
-            <div><ShieldCheck /><span><b>Professional</b><small>Qualified fitting</small></span></div>
-            <div><Clock3 /><span><b>7 days</b><small>Open every week</small></span></div>
+            <div>
+              <CheckCircle2 />
+              <span>
+                <b>4.9 / 5</b>
+                <small>Google rating</small>
+              </span>
+            </div>
+            <div>
+              <Truck />
+              <span>
+                <b>Mobile service</b>
+                <small>We come to you</small>
+              </span>
+            </div>
+            <div>
+              <ShieldCheck />
+              <span>
+                <b>Professional</b>
+                <small>Qualified fitting</small>
+              </span>
+            </div>
+            <div>
+              <Clock3 />
+              <span>
+                <b>7 days</b>
+                <small>Open every week</small>
+              </span>
+            </div>
           </div>
         </section>
 
@@ -259,16 +448,27 @@ export default function App() {
           <div className="container">
             <div className="section-heading centered">
               <span className="section-kicker">WHAT WE DO</span>
-              <h2>Professional tyre services,<br /><em>wherever you are.</em></h2>
-              <p>From routine tyre changes to roadside emergencies, RA Mobile Tyres brings the workshop to your location.</p>
+              <h2>
+                Professional tyre services,
+                <br />
+                <em>wherever you are.</em>
+              </h2>
+              <p>
+                From routine tyre changes to roadside emergencies, RA Mobile
+                Tyres brings the workshop to your location.
+              </p>
             </div>
             <div className="service-grid">
               {services.map(({ icon: Icon, title, text }) => (
                 <article className="service-card" key={title}>
-                  <div className="service-icon"><Icon size={26} /></div>
+                  <div className="service-icon">
+                    <Icon size={26} />
+                  </div>
                   <h3>{title}</h3>
                   <p>{text}</p>
-                  <button onClick={() => scrollTo("contact")}>Learn more <ArrowRight size={16} /></button>
+                  <button onClick={() => scrollTo("contact")}>
+                    Learn more <ArrowRight size={16} />
+                  </button>
                 </article>
               ))}
             </div>
@@ -278,19 +478,50 @@ export default function App() {
         {/* SPLIT */}
         <section className="split-section">
           <div className="split-image">
-            <div className="image-badge"><strong>30–60</strong><span>min target<br />within service areas*</span></div>
+            <div className="image-badge">
+              <strong>30–60</strong>
+              <span>
+                min target
+                <br />
+                within service areas*
+              </span>
+            </div>
           </div>
           <div className="split-copy">
             <span className="section-kicker">WHY RA MOBILE TYRES</span>
-            <h2>Forget the garage.<br /><em>We come to you.</em></h2>
-            <p>Save time and avoid the queue. Our mobile tyre service is designed around your day — at home, at work or when you're safely parked roadside.</p>
+            <h2>
+              Forget the garage.
+              <br />
+              <em>We come to you.</em>
+            </h2>
+            <p>
+              Save time and avoid the queue. Our mobile tyre service is designed
+              around your day — at home, at work or when you're safely parked
+              roadside.
+            </p>
             <div className="check-list">
-              {["Home & workplace fitting", "Same-day fitting options", "Emergency tyre assistance", "Premium, mid-range & budget tyres", "No need to wait at a garage"].map(x => (
-                <div key={x}><CheckCircle2 size={19} /> {x}</div>
+              {[
+                "Home & workplace fitting",
+                "Same-day fitting options",
+                "Emergency tyre assistance",
+                "Premium, mid-range & budget tyres",
+                "No need to wait at a garage",
+              ].map((x) => (
+                <div key={x}>
+                  <CheckCircle2 size={19} /> {x}
+                </div>
               ))}
             </div>
-            <button className="btn btn-dark" onClick={() => scrollTo("booking")}>Find Your Tyres <ArrowRight size={18} /></button>
-            <small className="fine-print">*Actual arrival time depends on location, traffic, availability and service demand.</small>
+            <button
+              className="btn btn-dark"
+              onClick={() => scrollTo("booking")}
+            >
+              Find Your Tyres <ArrowRight size={18} />
+            </button>
+            <small className="fine-print">
+              *Actual arrival time depends on location, traffic, availability
+              and service demand.
+            </small>
           </div>
         </section>
 
@@ -299,14 +530,34 @@ export default function App() {
           <div className="container">
             <div className="section-heading centered">
               <span className="section-kicker">SIMPLE PROCESS</span>
-              <h2>From booking to fitted<br /><em>in four simple steps.</em></h2>
+              <h2>
+                From booking to fitted
+                <br />
+                <em>in four simple steps.</em>
+              </h2>
             </div>
             <div className="steps">
               {[
-                ["01", "Find your tyres", "Search by registration, vehicle or tyre size."],
-                ["02", "Book your service", "Choose your preferred fitting option and location."],
-                ["03", "We come to you", "Our mobile technician arrives with the equipment needed."],
-                ["04", "Back on the road", "Tyres fitted, checked and you're ready to go."]
+                [
+                  "01",
+                  "Find your tyres",
+                  "Search by registration, vehicle or tyre size.",
+                ],
+                [
+                  "02",
+                  "Book your service",
+                  "Choose your preferred fitting option and location.",
+                ],
+                [
+                  "03",
+                  "We come to you",
+                  "Our mobile technician arrives with the equipment needed.",
+                ],
+                [
+                  "04",
+                  "Back on the road",
+                  "Tyres fitted, checked and you're ready to go.",
+                ],
               ].map(([num, title, text]) => (
                 <div className="step" key={num}>
                   <div className="step-num">{num}</div>
@@ -322,11 +573,40 @@ export default function App() {
         {/* BRANDS */}
         <section className="brands-section">
           <div className="container">
-            <div className="brands-title">TYRE BRANDS WE OFFER</div>
-            <div className="brands">
-              {["BRIDGESTONE", "CONTINENTAL", "MICHELIN", "GOODYEAR", "PIRELLI", "DUNLOP"].map(x => <span key={x}>{x}</span>)}
+            <div className="brands-title">Brands We Offer</div>
+
+            <div className="brands-grid">
+              {[
+                { name: "Aptany", image: "/aptany.png" },
+                { name: "Avon Tyres", image: "/avon.png" },
+                { name: "Bridgestone", image: "/bridgestone.png" },
+                { name: "Continental", image: "/continental.png" },
+                { name: "Cooper Tires", image: "/cooper.png" },
+                { name: "Davanti", image: "/davanti.png" },
+
+                { name: "Delinte", image: "/delinte.png" },
+                { name: "Dunlop", image: "/dunlop.png" },
+                { name: "Envoy", image: "/envoy.png" },
+                { name: "Evergreen", image: "/evergreen.png" },
+                { name: "Firestone", image: "/firestone.png" },
+                { name: "Goodyear", image: "/goodyear.png" },
+
+                { name: "Hankook", image: "/hankook.png" },
+                { name: "Linglong Tire", image: "/linglong.png" },
+                { name: "Michelin", image: "/michelin.png" },
+                { name: "Pirelli", image: "/pirelli.png" },
+                { name: "Vredestein", image: "/vredestein.png" },
+                { name: "Yokohama", image: "/yokohama.png" },
+              ].map((brand) => (
+                <div className="brand-card" key={brand.name}>
+                  <img
+                    src={brand.image}
+                    alt={`${brand.name} tyres`}
+                    loading="lazy"
+                  />
+                </div>
+              ))}
             </div>
-            <p>Plus a wide range of mid-range and budget options to suit your vehicle and budget.</p>
           </div>
         </section>
         {/* REVIEWS */}
@@ -335,10 +615,17 @@ export default function App() {
             <div className="review-top">
               <div>
                 <span className="section-kicker">CUSTOMER FEEDBACK</span>
-                <h2>Loved by drivers<br /><em>across the region.</em></h2>
+                <h2>
+                  Loved by drivers
+                  <br />
+                  <em>across the region.</em>
+                </h2>
               </div>
               <div className="rating-box">
-                <div><strong>4.9</strong><span>/ 5</span></div>
+                <div>
+                  <strong>4.9</strong>
+                  <span>/ 5</span>
+                </div>
                 <div className="stars">★★★★★</div>
                 <small>Based on 1,200+ Google reviews</small>
               </div>
@@ -350,7 +637,10 @@ export default function App() {
                   <p>"{text}"</p>
                   <div className="reviewer">
                     <div>{name.charAt(0)}</div>
-                    <span><b>{name}</b><small>Verified customer</small></span>
+                    <span>
+                      <b>{name}</b>
+                      <small>Verified customer</small>
+                    </span>
                   </div>
                 </article>
               ))}
@@ -363,13 +653,30 @@ export default function App() {
           <div className="container areas-inner">
             <div className="areas-copy">
               <span className="section-kicker">SERVICE COVERAGE</span>
-              <h2>Serving Manchester<br /><em>& beyond.</em></h2>
-              <p>RA Mobile Tyres serves Manchester, Greater Manchester and a growing number of surrounding areas.</p>
-              <button className="btn btn-yellow" onClick={() => scrollTo("contact")}>Check Your Area <MapPin size={18} /></button>
+              <h2>
+                Serving Manchester
+                <br />
+                <em>& beyond.</em>
+              </h2>
+              <p>
+                RA Mobile Tyres serves Manchester, Greater Manchester and a
+                growing number of surrounding areas.
+              </p>
+              <button
+                className="btn btn-yellow"
+                onClick={() => scrollTo("contact")}
+              >
+                Check Your Area <MapPin size={18} />
+              </button>
             </div>
             <div className="areas-cloud">
               {areas.map((area, i) => (
-                <span className={i === 0 ? "area-pill highlight" : "area-pill"} key={area}>{area}</span>
+                <span
+                  className={i === 0 ? "area-pill highlight" : "area-pill"}
+                  key={area}
+                >
+                  {area}
+                </span>
               ))}
             </div>
           </div>
@@ -380,13 +687,36 @@ export default function App() {
           <div className="container">
             <div className="section-heading centered light">
               <span className="section-kicker">TRANSPARENT OPTIONS</span>
-              <h2>Emergency help when<br /><em>you need it most.</em></h2>
-              <p>Current fitting charges shown below — confirm before implementation on the live booking system.</p>
+              <h2>
+                Emergency help when
+                <br />
+                <em>you need it most.</em>
+              </h2>
+              <p>
+                Current fitting charges shown below — confirm before
+                implementation on the live booking system.
+              </p>
             </div>
             <div className="price-grid">
-              <div className="price-card"><span>Same-day fitting</span><strong>£15</strong><small>single tyre</small><p>Free fitting on 2 or more tyres.</p></div>
-              <div className="price-card featured"><div className="popular">POPULAR</div><span>Emergency before 4pm</span><strong>£45</strong><small>mobile fitting</small><p>For urgent tyre fitting during daytime hours.</p></div>
-              <div className="price-card"><span>Emergency after 4pm</span><strong>£75</strong><small>mobile fitting</small><p>Out-of-hours emergency support.</p></div>
+              <div className="price-card">
+                <span>Same-day fitting</span>
+                <strong>£15</strong>
+                <small>single tyre</small>
+                <p>Free fitting on 2 or more tyres.</p>
+              </div>
+              <div className="price-card featured">
+                <div className="popular">POPULAR</div>
+                <span>Emergency before 4pm</span>
+                <strong>£45</strong>
+                <small>mobile fitting</small>
+                <p>For urgent tyre fitting during daytime hours.</p>
+              </div>
+              <div className="price-card">
+                <span>Emergency after 4pm</span>
+                <strong>£75</strong>
+                <small>mobile fitting</small>
+                <p>Out-of-hours emergency support.</p>
+              </div>
             </div>
           </div>
         </section>
@@ -396,23 +726,65 @@ export default function App() {
           <div className="container contact-grid">
             <div className="contact-copy">
               <span className="section-kicker">GET IN TOUCH</span>
-              <h2>Need help with a tyre?<br /><em>Let's get you moving.</em></h2>
-              <p>Call us for emergency assistance, a tyre quote or advice about the right tyres for your vehicle.</p>
-              <a className="big-phone" href={PHONE_LINK}><Phone size={22} /> {PHONE}</a>
+              <h2>
+                Need help with a tyre?
+                <br />
+                <em>Let's get you moving.</em>
+              </h2>
+              <p>
+                Call us for emergency assistance, a tyre quote or advice about
+                the right tyres for your vehicle.
+              </p>
+              <a className="big-phone" href={PHONE_LINK}>
+                <Phone size={22} /> {PHONE}
+              </a>
               <div className="contact-meta">
-                <div><MapPin /><span><b>Based in</b>164 Greenside Lane, Droylsden, Greater Manchester M43 7UR</span></div>
-                <div><Headphones /><span><b>Email</b>ramobiletyres@gmail.com</span></div>
+                <div>
+                  <MapPin />
+                  <span>
+                    <b>Based in</b>164 Greenside Lane, Droylsden, Greater
+                    Manchester M43 7UR
+                  </span>
+                </div>
+                <div>
+                  <Headphones />
+                  <span>
+                    <b>Email</b>ramobiletyres@gmail.com
+                  </span>
+                </div>
               </div>
             </div>
-            <form className="contact-form" onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}>
+            <form
+              className="contact-form"
+              onSubmit={(e) => {
+                e.preventDefault();
+                setSubmitted(true);
+              }}
+            >
               <h3>Request a call back</h3>
               <p>Send your details and we'll get back to you.</p>
-              <label>Your name<input required placeholder="Full name" /></label>
-              <label>Phone number<input required placeholder="07..." /></label>
-              <label>Email address<input type="email" placeholder="you@example.com" /></label>
-              <label>How can we help?<textarea rows="4" placeholder="Tell us about your tyre or vehicle..." /></label>
+              <label>
+                Your name
+                <input required placeholder="Full name" />
+              </label>
+              <label>
+                Phone number
+                <input required placeholder="07..." />
+              </label>
+              <label>
+                Email address
+                <input type="email" placeholder="you@example.com" />
+              </label>
+              <label>
+                How can we help?
+                <textarea
+                  rows="4"
+                  placeholder="Tell us about your tyre or vehicle..."
+                />
+              </label>
               <button className="btn btn-blue" type="submit">
-                {submitted ? "Request Sent ✓" : "Send Request"} {!submitted && <ArrowRight size={18} />}
+                {submitted ? "Request Sent ✓" : "Send Request"}{" "}
+                {!submitted && <ArrowRight size={18} />}
               </button>
             </form>
           </div>
@@ -423,14 +795,30 @@ export default function App() {
           <div className="container faq-grid">
             <div>
               <span className="section-kicker">FAQ</span>
-              <h2>Questions,<br /><em>answered.</em></h2>
+              <h2>
+                Questions,
+                <br />
+                <em>answered.</em>
+              </h2>
             </div>
             <div>
               {[
-                ["Can you fit tyres at my home or work?", "Yes. The mobile fitting service is designed to fit tyres at convenient locations such as home or work, subject to the service area and booking availability."],
-                ["Do you offer emergency tyre fitting?", "Yes. RA Mobile Tyres offers emergency mobile tyre fitting and out-of-hours services. Call the emergency number for current availability and pricing."],
-                ["Can I search for tyres using my registration?", "Yes. Our booking system supports registration-number search as well as tyre-size search to find the right tyre for your vehicle."],
-                ["Which areas do you cover?", "We cover Manchester and a large surrounding area including Tameside, Stockport, Salford, Trafford, Bolton, Oldham, Rochdale and more. Confirm your postcode when booking."]
+                [
+                  "Can you fit tyres at my home or work?",
+                  "Yes. The mobile fitting service is designed to fit tyres at convenient locations such as home or work, subject to the service area and booking availability.",
+                ],
+                [
+                  "Do you offer emergency tyre fitting?",
+                  "Yes. RA Mobile Tyres offers emergency mobile tyre fitting and out-of-hours services. Call the emergency number for current availability and pricing.",
+                ],
+                [
+                  "Can I search for tyres using my registration?",
+                  "Yes. Our booking system supports registration-number search as well as tyre-size search to find the right tyre for your vehicle.",
+                ],
+                [
+                  "Which areas do you cover?",
+                  "We cover Manchester and a large surrounding area including Tameside, Stockport, Salford, Trafford, Bolton, Oldham, Rochdale and more. Confirm your postcode when booking.",
+                ],
               ].map(([q, a], i) => (
                 <div className="faq-item" key={q}>
                   <button onClick={() => setFaqOpen(faqOpen === i ? -1 : i)}>
@@ -450,19 +838,69 @@ export default function App() {
         <div className="container footer-main">
           <div className="footer-brand">
             <div className="brand">
-              <div className="brand-mark"><span>RA</span></div>
-              <div><strong>RA MOBILE TYRES</strong><small>FAST • PROFESSIONAL • MOBILE</small></div>
+              <div className="brand-mark">
+                <span>RA</span>
+              </div>
+              <div>
+                <strong>RA MOBILE TYRES</strong>
+                <small>FAST • PROFESSIONAL • MOBILE</small>
+              </div>
             </div>
-            <p>Professional mobile tyre fitting and vehicle services across Manchester and surrounding areas.</p>
-            <a href={PHONE_LINK} className="footer-phone"><Phone size={17} /> {PHONE}</a>
+            <p>
+              Professional mobile tyre fitting and vehicle services across
+              Manchester and surrounding areas.
+            </p>
+            <a href={PHONE_LINK} className="footer-phone">
+              <Phone size={17} /> {PHONE}
+            </a>
           </div>
           <div>
             <h4>Services</h4>
-            <a href="#services" onClick={(e) => { e.preventDefault(); scrollTo("services"); }}>Mobile Fitting</a>
-            <a href="#services" onClick={(e) => { e.preventDefault(); scrollTo("services"); }}>Emergency Tyres</a>
-            <a href="#services" onClick={(e) => { e.preventDefault(); scrollTo("services"); }}>Tyre Repair</a>
-            <a href="#services" onClick={(e) => { e.preventDefault(); scrollTo("services"); }}>Jump Start</a>
-            <a href="#services" onClick={(e) => { e.preventDefault(); scrollTo("services"); }}>Battery Replacement</a>
+            <a
+              href="#services"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo("services");
+              }}
+            >
+              Mobile Fitting
+            </a>
+            <a
+              href="#services"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo("services");
+              }}
+            >
+              Emergency Tyres
+            </a>
+            <a
+              href="#services"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo("services");
+              }}
+            >
+              Tyre Repair
+            </a>
+            <a
+              href="#services"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo("services");
+              }}
+            >
+              Jump Start
+            </a>
+            <a
+              href="#services"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollTo("services");
+              }}
+            >
+              Battery Replacement
+            </a>
           </div>
           <div>
             <h4>Company</h4>
@@ -478,12 +916,17 @@ export default function App() {
           </div>
         </div>
         <div className="container footer-bottom">
-          <span>© {new Date().getFullYear()} RA Mobile Tyres. All rights reserved.</span>
+          <span>
+            © {new Date().getFullYear()} RA Mobile Tyres. All rights reserved.
+          </span>
           <span>Designed for a faster, simpler mobile booking experience.</span>
         </div>
       </footer>
 
-      <a className="floating-call" href={PHONE_LINK}><Phone size={20} /><span>Call RA Mobile Tyres</span></a>
+      <a className="floating-call" href={PHONE_LINK}>
+        <Phone size={20} />
+        <span>Call RA Mobile Tyres</span>
+      </a>
     </div>
   );
 }
