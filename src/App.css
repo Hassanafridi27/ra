@@ -102,9 +102,10 @@
 }
 
 .area-page-header {
-  background:
-    linear-gradient(135deg, rgba(5, 20, 34, 0.96), rgba(17, 57, 86, 0.9)),
-    url("/public//b.jpeg") center/cover no-repeat;
+  background-color: #071a2a;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   color: #fff;
   padding: 70px 0 30px;
   position: relative;
