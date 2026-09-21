@@ -1,8 +1,15 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { fireEvent, render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
+test("opens an area page when selecting an area from the site", () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+  const manchesterButtons = screen.getAllByRole("button", {
+    name: /Manchester/i,
+  });
+  fireEvent.click(manchesterButtons[0]);
+
+  expect(
+    screen.getByText(/mobile tyre fitting in manchester/i),
+  ).toBeInTheDocument();
 });

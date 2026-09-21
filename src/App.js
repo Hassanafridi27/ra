@@ -78,10 +78,22 @@ const services = [
 ];
 
 const reviews = [
-  ["Gareth Beaumont", "Fantastic service! Very quick and professional. Kept fully updated and very reasonable price."],
-  ["Jo", "Turned up exactly when they said they would. Very reasonably priced. Quick and efficient."],
-  ["David Wright", "So easy, kept up to date with time frames. Friendly guy who turned up. 10/10 service."],
-  ["Christopher", "Fantastic service from initial booking to fitting. Great choice of tyres and speedy fitting."]
+  [
+    "Gareth Beaumont",
+    "Fantastic service! Very quick and professional. Kept fully updated and very reasonable price.",
+  ],
+  [
+    "Jo",
+    "Turned up exactly when they said they would. Very reasonably priced. Quick and efficient.",
+  ],
+  [
+    "David Wright",
+    "So easy, kept up to date with time frames. Friendly guy who turned up. 10/10 service.",
+  ],
+  [
+    "Christopher",
+    "Fantastic service from initial booking to fitting. Great choice of tyres and speedy fitting.",
+  ],
 ];
 
 const areas = [
@@ -152,17 +164,169 @@ const areas = [
   "Wigan",
 ];
 
+const getAreaPageData = (areaName) => ({
+  name: areaName,
+  headline: `Mobile tyre fitting in ${areaName}`,
+  subtitle: `Fast, professional tyre replacement and emergency support across ${areaName} and nearby roads. We bring the workshop to your driveway, workplace or roadside location with minimal disruption.`,
+  summary:
+    "Same-day mobile fitting, puncture repair, locking wheel nut removal and roadside tyre support designed around your schedule.",
+  features: [
+    "Same-day mobile tyre fitting",
+    "Emergency roadside call-outs",
+    "Premium, mid-range and budget options",
+    "Locking nut removal and valve replacement",
+    "Friendly local service with transparent pricing",
+  ],
+  stats: [
+    { label: "Response time", value: "30–60 min" },
+    { label: "Service area", value: "Local + nearby" },
+    { label: "Booking", value: "7 days" },
+  ],
+  serviceList: [
+    "Front and rear tyre replacement",
+    "Puncture and tyre repair",
+    "Valve and TPMS sensor replacement",
+    "Battery jump start and replacement",
+    "Emergency call-out assistance",
+  ],
+  quote: `Need tyres in ${areaName}? We’ll get you back on the road without the hassle of a garage visit.`,
+});
+
+function AreaPage({ areaName, onBack }) {
+  const content = getAreaPageData(areaName);
+
+  return (
+    <div className="area-page-shell">
+      <header className="area-page-header">
+        <div className="container area-page-header-inner">
+          <button className="btn btn-outline btn-light" onClick={onBack}>
+            <ArrowRight size={16} className="back-arrow" /> Back to all services
+          </button>
+
+          {/* <div className="area-page-kicker">MOBILE TYRE FITTING</div> */}
+          <h1>{content.headline}</h1>
+          <p>{content.subtitle}</p>
+          <div className="area-hero-actions">
+            <a className="btn btn-yellow" href={PHONE_LINK}>
+              <Phone size={18} /> Book in {content.name}
+            </a>
+            <button className="btn btn-outline btn-light" onClick={onBack}>
+              Explore other areas
+            </button>
+          </div>
+
+          <div className="area-stats-grid">
+            {content.stats.map((item) => (
+              <div key={item.label} className="area-stat-box">
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </header>
+
+      <main className="container area-page-main">
+        <section className="area-page-section area-showcase">
+          <div>
+            <span className="section-kicker">WHY LOCAL DRIVERS CHOOSE US</span>
+            <h2>
+              Premium service,
+              <em> without the garage queue.</em>
+            </h2>
+            <p>{content.summary}</p>
+            <div className="check-list area-checks">
+              {content.features.map((feature) => (
+                <div key={feature}>
+                  <CheckCircle2 size={19} /> {feature}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="area-feature-panel">
+            <div className="feature-panel-top">
+              <MapPin size={20} />
+              <span>{content.name} coverage</span>
+            </div>
+            <ul>
+              {content.serviceList.map((item) => (
+                <li key={item}>{item}</li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="area-page-section area-service-grid">
+          <div className="service-card elevated">
+            <div className="service-icon">
+              <Truck size={26} />
+            </div>
+            <h3>Mobile tyre replacement</h3>
+            <p>
+              We fit new tyres at your location, with attention to tyre size,
+              driving style and road conditions.
+            </p>
+          </div>
+
+          <div className="service-card elevated">
+            <div className="service-icon">
+              <Wrench size={26} />
+            </div>
+            <h3>Locking nut removal</h3>
+            <p>
+              Locked wheel nuts can be frustrating; we provide a safe and
+              efficient removal service to keep you moving.
+            </p>
+          </div>
+
+          <div className="service-card elevated">
+            <div className="service-icon">
+              <Zap size={26} />
+            </div>
+            <h3>Emergency support</h3>
+            <p>
+              When a unexpected puncture or blowout hits, our mobile team can be
+              on hand with practical support.
+            </p>
+          </div>
+        </section>
+
+        <section className="area-page-section area-cta-card">
+          <div>
+            <span className="section-kicker dark">BOOK YOUR SLOT</span>
+            <h3>{content.quote}</h3>
+          </div>
+          <a className="btn btn-blue" href={PHONE_LINK}>
+            <Phone size={18} /> Call {PHONE}
+          </a>
+        </section>
+      </main>
+    </div>
+  );
+}
+
 export default function App() {
   const [slide, setSlide] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
   const [bookingMode, setBookingMode] = useState("reg");
   const [faqOpen, setFaqOpen] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const [selectedArea, setSelectedArea] = useState(null);
 
   useEffect(() => {
-    const timer = setInterval(() => setSlide((s) => (s + 1) % slides.length), 6500);
+    const timer = setInterval(
+      () => setSlide((s) => (s + 1) % slides.length),
+      6500,
+    );
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    if (selectedArea) {
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+  }, [selectedArea]);
 
   const current = slides[slide];
 
@@ -170,6 +334,12 @@ export default function App() {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setMenuOpen(false);
   };
+
+  if (selectedArea) {
+    return (
+      <AreaPage areaName={selectedArea} onBack={() => setSelectedArea(null)} />
+    );
+  }
 
   return (
     <div className="site">
@@ -238,7 +408,7 @@ export default function App() {
                     <button
                       key={area}
                       className={i === 0 ? "area-btn primary" : "area-btn"}
-                      onClick={() => scrollTo("areas")}
+                      onClick={() => setSelectedArea(area)}
                     >
                       {area}
                     </button>
@@ -658,12 +828,14 @@ export default function App() {
             </div>
             <div className="areas-cloud">
               {areas.map((area, i) => (
-                <span
+                <button
+                  type="button"
                   className={i === 0 ? "area-pill highlight" : "area-pill"}
                   key={area}
+                  onClick={() => setSelectedArea(area)}
                 >
                   {area}
-                </span>
+                </button>
               ))}
             </div>
           </div>
