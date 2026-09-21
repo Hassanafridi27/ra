@@ -78,9 +78,9 @@ const services = [
 ];
 
 const reviews = [
-  ["Jamie Holmes-Brown", "Fantastic service! Very quick and professional. Kept fully updated and very reasonable price."],
-  ["Warren Mitchell", "Turned up exactly when they said they would. Very reasonably priced. Quick and efficient."],
-  ["Shannon Kelly", "So easy, kept up to date with time frames. Friendly guy who turned up. 10/10 service."],
+  ["Gareth Beaumont", "Fantastic service! Very quick and professional. Kept fully updated and very reasonable price."],
+  ["Jo", "Turned up exactly when they said they would. Very reasonably priced. Quick and efficient."],
+  ["David Wright", "So easy, kept up to date with time frames. Friendly guy who turned up. 10/10 service."],
   ["Christopher", "Fantastic service from initial booking to fitting. Great choice of tyres and speedy fitting."]
 ];
 
