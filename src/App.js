@@ -164,6 +164,15 @@ const areas = [
   "Wigan",
 ];
 
+const slugifyArea = (areaName) =>
+  areaName
+    .trim()
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-");
+
 const getAreaPageData = (areaName) => ({
   name: areaName,
   headline: `Mobile tyre fitting in ${areaName}`,
@@ -312,7 +321,17 @@ export default function App() {
   const [bookingMode, setBookingMode] = useState("reg");
   const [faqOpen, setFaqOpen] = useState(0);
   const [submitted, setSubmitted] = useState(false);
-  const [selectedArea, setSelectedArea] = useState(null);
+  const [selectedArea, setSelectedArea] = useState(() => {
+    if (typeof window === "undefined") return null;
+
+    const path = window.location.pathname;
+    const match = path.match(/^\/areas\/([^/]+)$/);
+    if (!match) return null;
+
+    const slug = match[1];
+    const found = areas.find((area) => slugifyArea(area) === slug);
+    return found || null;
+  });
 
   useEffect(() => {
     const timer = setInterval(
@@ -323,12 +342,46 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (selectedArea) {
+    const syncFromLocation = () => {
+      const path = window.location.pathname;
+      const match = path.match(/^\/areas\/([^/]+)$/);
+
+      if (!match) {
+        setSelectedArea(null);
+        return;
+      }
+
+      const slug = match[1];
+      const found = areas.find((area) => slugifyArea(area) === slug);
+      setSelectedArea(found || null);
+    };
+
+    window.addEventListener("popstate", syncFromLocation);
+    return () => window.removeEventListener("popstate", syncFromLocation);
+  }, []);
+
+  useEffect(() => {
+    if (selectedArea && typeof window !== "undefined" && window.scrollTo) {
       window.scrollTo({ top: 0, behavior: "instant" });
     }
   }, [selectedArea]);
 
   const current = slides[slide];
+
+  const openArea = (area) => {
+    setSelectedArea(area);
+    const slug = slugifyArea(area);
+    if (typeof window !== "undefined") {
+      window.history.pushState({}, "", `/areas/${slug}`);
+    }
+  };
+
+  const closeArea = () => {
+    setSelectedArea(null);
+    if (typeof window !== "undefined") {
+      window.history.pushState({}, "", "/");
+    }
+  };
 
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -336,9 +389,7 @@ export default function App() {
   };
 
   if (selectedArea) {
-    return (
-      <AreaPage areaName={selectedArea} onBack={() => setSelectedArea(null)} />
-    );
+    return <AreaPage areaName={selectedArea} onBack={closeArea} />;
   }
 
   return (
@@ -408,7 +459,7 @@ export default function App() {
                     <button
                       key={area}
                       className={i === 0 ? "area-btn primary" : "area-btn"}
-                      onClick={() => setSelectedArea(area)}
+                      onClick={() => openArea(area)}
                     >
                       {area}
                     </button>
@@ -832,7 +883,7 @@ export default function App() {
                   type="button"
                   className={i === 0 ? "area-pill highlight" : "area-pill"}
                   key={area}
-                  onClick={() => setSelectedArea(area)}
+                  onClick={() => openArea(area)}
                 >
                   {area}
                 </button>

@@ -13,3 +13,13 @@ test("opens an area page when selecting an area from the site", () => {
     screen.getByText(/mobile tyre fitting in manchester/i),
   ).toBeInTheDocument();
 });
+
+test("loads the correct area page from its URL route", () => {
+  window.history.pushState({}, "", "/areas/manchester");
+
+  render(<App />);
+
+  expect(
+    screen.getByText(/mobile tyre fitting in manchester/i),
+  ).toBeInTheDocument();
+});
