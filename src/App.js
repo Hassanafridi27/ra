@@ -688,23 +688,23 @@ export default function App() {
             </div>
             <div className="price-grid">
               <div className="price-card">
-                <span>Same-day fitting</span>
-                <strong>£15</strong>
+                <span>Same-day fitting Starts from*</span>
+                <strong>£45</strong>
                 <small>single tyre</small>
-                <p>Free fitting on 2 or more tyres.</p>
+                <p>Depending on the location.</p>
               </div>
               <div className="price-card featured">
                 <div className="popular">POPULAR</div>
-                <span>Emergency before 4pm</span>
-                <strong>£45</strong>
-                <small>mobile fitting</small>
-                <p>For urgent tyre fitting during daytime hours.</p>
-              </div>
-              <div className="price-card">
-                <span>Emergency after 4pm</span>
+                <span>Emergency before 4pm Starts from*</span>
                 <strong>£75</strong>
                 <small>mobile fitting</small>
-                <p>Out-of-hours emergency support.</p>
+                <p>For urgent tyre fitting during daytime hours, depending on the location.</p>
+              </div>
+              <div className="price-card">
+                <span>Emergency after 4pm Starts from*</span>
+                <strong>£100</strong>
+                <small>mobile fitting</small>
+                <p>Out-of-hours emergency support, depending on the location.</p>
               </div>
             </div>
           </div>
