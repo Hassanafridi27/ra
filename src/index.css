@@ -236,17 +236,14 @@ img {
   font-weight: 700;
   color: var(--muted);
   text-align: left;
-  transition: 0.15s;
+  transition: 0.15s ease;
 }
-.area-btn:hover {
-  background: var(--navy);
-  color: #fff;
-  border-color: var(--navy);
-}
-.area-btn.primary {
+.area-btn:hover,
+.area-btn:focus-visible {
   background: var(--yellow);
   color: var(--navy);
   border-color: var(--yellow);
+  outline: none;
 }
 .chevron-icon {
   transition: transform 0.2s;

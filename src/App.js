@@ -234,10 +234,10 @@ export default function App() {
                   Coverage Areas — Manchester & Beyond
                 </div>
                 <div className="areas-grid">
-                  {areas.map((area, i) => (
+                  {areas.map((area) => (
                     <button
                       key={area}
-                      className={i === 0 ? "area-btn primary" : "area-btn"}
+                      className="area-btn"
                       onClick={() => openArea(area)}
                     >
                       {area}
