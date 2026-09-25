@@ -82,6 +82,18 @@ export default function AreaPage({ area, onBack }) {
           </div>
         </section>
 
+        {area.introParagraphs && area.introParagraphs.length > 0 && (
+          <section className="area-page-section area-copy-card">
+            <span className="section-kicker">ABOUT OUR SERVICE</span>
+            <h2>
+              Same day fitting in <em>{area.name}</em>
+            </h2>
+            {area.introParagraphs.map((paragraph, index) => (
+              <p key={`${area.slug}-intro-${index}`}>{paragraph}</p>
+            ))}
+          </section>
+        )}
+
         <section className="area-page-section area-service-grid">
           <div className="service-card elevated">
             <div className="service-icon">
@@ -117,6 +129,43 @@ export default function AreaPage({ area, onBack }) {
           </div>
         </section>
 
+        <section className="area-page-section area-review-section">
+          <div className="review-top">
+            <div>
+              <span className="section-kicker">CUSTOMER FEEDBACK</span>
+              <h2>
+                Local drivers trust us
+                <br />
+                <em>in {area.name}.</em>
+              </h2>
+            </div>
+            <div className="rating-box">
+              <div>
+                <strong>4.9</strong>
+                <span>/ 5</span>
+              </div>
+              <div className="stars">★★★★★</div>
+              <small>Based on 1,200+ Google reviews</small>
+            </div>
+          </div>
+
+          <div className="review-grid">
+            {area.reviews.map(([name, text]) => (
+              <article className="review-card" key={`${area.slug}-${name}`}>
+                <div className="stars">★★★★★</div>
+                <p>"{text}"</p>
+                <div className="reviewer">
+                  <div>{name.charAt(0)}</div>
+                  <span>
+                    <b>{name}</b>
+                    <small>Verified customer</small>
+                  </span>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section className="area-page-section area-cta-card">
           <div>
             <span className="section-kicker dark">BOOK YOUR SLOT</span>
@@ -127,6 +176,62 @@ export default function AreaPage({ area, onBack }) {
           </a>
         </section>
       </main>
+
+      <footer className="footer area-page-footer">
+        <div className="container footer-main">
+          <div className="footer-brand">
+            <div className="brand">
+              <div className="brand-mark">
+                <span>RA</span>
+              </div>
+              <div>
+                <strong>RA MOBILE TYRES</strong>
+                <small>FAST • PROFESSIONAL • MOBILE</small>
+              </div>
+            </div>
+            <p>
+              Professional mobile tyre fitting and vehicle services across
+              Manchester and surrounding areas.
+            </p>
+            <a href={PHONE_LINK} className="footer-phone">
+              <Phone size={17} /> {PHONE}
+            </a>
+          </div>
+
+          <div>
+            <h4>Quick links</h4>
+            <button type="button" onClick={onBack}>
+              Back to services
+            </button>
+            <a href={PHONE_LINK}>Book by phone</a>
+            <a href="/areas/manchester">Manchester coverage</a>
+          </div>
+
+          <div>
+            <h4>Services</h4>
+            <a href={PHONE_LINK}>Mobile fitting</a>
+            <a href={PHONE_LINK}>Emergency tyres</a>
+            <a href={PHONE_LINK}>Tyre repair</a>
+            <a href={PHONE_LINK}>Battery replacement</a>
+          </div>
+
+          <div>
+            <h4>Opening Hours</h4>
+            <p>Monday – Sunday</p>
+            <strong>08:30 – 18:00</strong>
+            <small>Emergency availability may vary.</small>
+          </div>
+        </div>
+
+        <div className="container footer-bottom">
+          <span>
+            © {new Date().getFullYear()} RA Mobile Tyres. All rights reserved.
+          </span>
+          <span>
+            Fast, professional service for {area.name} and nearby roads.
+          </span>
+        </div>
+      </footer>
     </div>
   );
 }

@@ -140,8 +140,16 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (selectedArea && typeof window !== "undefined" && window.scrollTo) {
-      window.scrollTo({ top: 0, behavior: "instant" });
+    if (
+      selectedArea &&
+      typeof window !== "undefined" &&
+      typeof window.scrollTo === "function"
+    ) {
+      try {
+        window.scrollTo({ top: 0, behavior: "instant" });
+      } catch (error) {
+        // Some test environments do not implement scrollTo.
+      }
     }
   }, [selectedArea]);
 
@@ -698,13 +706,18 @@ export default function App() {
                 <span>Emergency before 4pm Starts from*</span>
                 <strong>£75</strong>
                 <small>mobile fitting</small>
-                <p>For urgent tyre fitting during daytime hours, depending on the location.</p>
+                <p>
+                  For urgent tyre fitting during daytime hours, depending on the
+                  location.
+                </p>
               </div>
               <div className="price-card">
                 <span>Emergency after 4pm Starts from*</span>
                 <strong>£100</strong>
                 <small>mobile fitting</small>
-                <p>Out-of-hours emergency support, depending on the location.</p>
+                <p>
+                  Out-of-hours emergency support, depending on the location.
+                </p>
               </div>
             </div>
           </div>
