@@ -474,7 +474,7 @@ export default function App() {
         <section className="split-section">
           <div className="split-image">
             <div className="image-badge">
-              <strong>30–60</strong>
+              <strong>45–90</strong>
               <span>
                 min target
                 <br />

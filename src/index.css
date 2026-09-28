@@ -465,9 +465,11 @@ img {
 }
 .booking-tabs {
   display: flex;
+  flex-direction: column; /* add this */
   gap: 5px;
   align-self: stretch;
-  align-items: end;
+  align-items: stretch; /* make buttons full width */
+  justify-content: center;
 }
 .booking-tabs button {
   border: 0;
