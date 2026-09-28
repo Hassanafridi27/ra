@@ -101,7 +101,7 @@ const reviews = [
 export default function App() {
   const [slide, setSlide] = useState(0);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [bookingMode, setBookingMode] = useState("reg");
+  const [bookingMode, setBookingMode] = useState("size");
   const [faqOpen, setFaqOpen] = useState(0);
   const [submitted, setSubmitted] = useState(false);
   const [selectedArea, setSelectedArea] = useState(() => {
@@ -350,16 +350,16 @@ export default function App() {
               </div>
               <div className="booking-tabs">
                 <button
-                  className={bookingMode === "reg" ? "active" : ""}
-                  onClick={() => setBookingMode("reg")}
-                >
-                  Registration
-                </button>
-                <button
                   className={bookingMode === "size" ? "active" : ""}
                   onClick={() => setBookingMode("size")}
                 >
                   Tyre Size
+                </button>
+                <button
+                  className={bookingMode === "reg" ? "active" : ""}
+                  onClick={() => setBookingMode("reg")}
+                >
+                  Registration
                 </button>
               </div>
               {bookingMode === "reg" ? (

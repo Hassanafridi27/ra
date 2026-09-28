@@ -14,7 +14,9 @@ test("opens an area page when selecting an area from the site", () => {
   fireEvent.click(manchesterButtons[0]);
 
   expect(
-    screen.getByText(/mobile tyre fitting in manchester/i),
+    screen.getByRole("heading", {
+      name: /mobile tyre fitting in manchester/i,
+    }),
   ).toBeInTheDocument();
 });
 
@@ -24,7 +26,9 @@ test("loads the correct area page from its URL route", () => {
   render(<App />);
 
   expect(
-    screen.getByText(/mobile tyre fitting in manchester/i),
+    screen.getByRole("heading", {
+      name: /mobile tyre fitting in manchester/i,
+    }),
   ).toBeInTheDocument();
 });
 
