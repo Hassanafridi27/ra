@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
+  ChevronLeft,
+  ChevronRight,
   BadgeCheck,
   Battery,
   Cable,
@@ -96,6 +98,46 @@ const reviews = [
     "Christopher",
     "Fantastic service from initial booking to fitting. Great choice of tyres and speedy fitting.",
   ],
+  [
+    "Sarah Mitchell",
+    "Absolutely brilliant! Booked online in minutes and the fitter arrived right on time. Will definitely use again.",
+  ],
+  [
+    "James Thornton",
+    "Really impressed with the whole experience. Fast, friendly and very competitive pricing. Highly recommend.",
+  ],
+  [
+    "Emily Clarke",
+    "Amazing convenience — tyres fitted on my driveway while I worked from home. Couldn't be easier.",
+  ],
+  [
+    "Mark Patterson",
+    "Second time using this service and once again faultless. Punctual, professional and great value.",
+  ],
+  [
+    "Rachel Summers",
+    "The fitter was polite, tidy and incredibly quick. Best tyre service I've ever used. Five stars.",
+  ],
+  [
+    "Tom Henderson",
+    "Booked the night before and they came next morning. Unbelievable speed and very fair price.",
+  ],
+  [
+    "Lisa Hartley",
+    "Smooth process from start to finish. Real-time updates on arrival time were a great touch.",
+  ],
+  [
+    "Andrew Foster",
+    "Superb service. The guy knew exactly what he was doing and had both tyres changed in no time.",
+  ],
+  [
+    "Natalie Brooks",
+    "So much better than going to a garage. Came to my workplace and got it all sorted in 20 minutes.",
+  ],
+  [
+    "Daniel Pearce",
+    "Top quality tyres at a price that beat every local garage. Fast fitting and no fuss whatsoever.",
+  ],
 ];
 
 export default function App() {
@@ -104,6 +146,7 @@ export default function App() {
   const [bookingMode, setBookingMode] = useState("size");
   const [faqOpen, setFaqOpen] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const reviewTrackRef = useRef(null);
   const [selectedArea, setSelectedArea] = useState(() => {
     if (typeof window === "undefined") return null;
 
@@ -173,6 +216,16 @@ export default function App() {
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setMenuOpen(false);
+  };
+
+  const scrollReviews = (direction) => {
+    const track = reviewTrackRef.current;
+    if (track) {
+      track.scrollBy({
+        left: direction * track.clientWidth * 0.85,
+        behavior: "smooth",
+      });
+    }
   };
 
   if (selectedArea) {
@@ -485,22 +538,30 @@ export default function App() {
           <div className="split-copy">
             <span className="section-kicker">WHY RA MOBILE TYRES</span>
             <h2>
-              Forget the garage.
+              Mobile Tyre Fitting
               <br />
-              <em>We come to you.</em>
+              <em>Wherever You Need Us</em>
             </h2>
             <p>
-              Save time and avoid the queue. Our mobile tyre service is designed
-              around your day — at home, at work or when you're safely parked
-              roadside.
+              <strong>
+                Stranded Roadside? Broken Down on the Motorway? At Home or Work?
+                We Come to You.
+              </strong>
+            </p>
+            <p>
+              From urgent motorway breakdowns and roadside emergencies to
+              convenient tyre fitting at your home, workplace or any safe
+              location, our mobile tyres service has got you covered. Our mobile
+              tyre fitters come directly to you, helping you get back on the
+              road quickly, safely and with minimum hassle.
             </p>
             <div className="check-list">
               {[
-                "Home & workplace fitting",
-                "Same-day fitting options",
-                "Emergency tyre assistance",
-                "Premium, mid-range & budget tyres",
-                "No need to wait at a garage",
+                "Emergency Roadside Tyre Fitting",
+                "Motorway Breakdown Assistance",
+                "Home & Workplace Tyre Fitting",
+                "Puncture & Tyre Replacement",
+                "Fast Mobile Response",
               ].map((x) => (
                 <div key={x}>
                   <CheckCircle2 size={19} /> {x}
@@ -513,6 +574,10 @@ export default function App() {
             >
               Find Your Tyres <ArrowRight size={18} />
             </button>
+            <p className="split-closing">
+              No garage. No queues. No hassle. Just fast mobile tyre fitting
+              that gets you moving again.
+            </p>
             <small className="fine-print">
               *Actual arrival time depends on location, traffic, availability
               and service demand.
@@ -616,16 +681,34 @@ export default function App() {
                   <em>across the region.</em>
                 </h2>
               </div>
-              <div className="rating-box">
-                <div>
-                  <strong>4.9</strong>
-                  <span>/ 5</span>
+              <div className="review-tools">
+                <div className="rating-box">
+                  <div>
+                    <strong>4.9</strong>
+                    <span>/ 5</span>
+                  </div>
+                  <div className="stars">★★★★★</div>
+                  <small>Based on 1,200+ Google reviews</small>
                 </div>
-                <div className="stars">★★★★★</div>
-                <small>Based on 1,200+ Google reviews</small>
+                <div className="review-controls" aria-label="Review navigation">
+                  <button
+                    type="button"
+                    aria-label="Previous reviews"
+                    onClick={() => scrollReviews(-1)}
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
+                  <button
+                    type="button"
+                    aria-label="Next reviews"
+                    onClick={() => scrollReviews(1)}
+                  >
+                    <ChevronRight size={20} />
+                  </button>
+                </div>
               </div>
             </div>
-            <div className="review-grid">
+            <div className="review-grid" ref={reviewTrackRef}>
               {reviews.map(([name, text]) => (
                 <article className="review-card" key={name}>
                   <div className="stars">★★★★★</div>
@@ -698,8 +781,11 @@ export default function App() {
               <div className="price-card">
                 <span>Same-day fitting Starts from*</span>
                 <strong>£45</strong>
-                <small>single tyre</small>
-                <p>Depending on the location.</p>
+                <small>Mobile Fitting</small>
+                <p>
+                  For non emergency tyre fitting during daytime hours, depending
+                  on the location.
+                </p>
               </div>
               <div className="price-card featured">
                 <div className="popular">POPULAR</div>
@@ -820,6 +906,38 @@ export default function App() {
                 [
                   "Which areas do you cover?",
                   "We cover Manchester and a large surrounding area including Tameside, Stockport, Salford, Trafford, Bolton, Oldham, Rochdale and more. Confirm your postcode when booking.",
+                ],
+                [
+                  "How do I book a mobile tyre fitting?",
+                  "You can book online through our website at any time. Simply enter your registration number or tyre size, choose your tyres, select a date and time, and confirm your location.",
+                ],
+                [
+                  "How long does a mobile tyre fitting take?",
+                  "Most standard tyre fits take between 20 and 45 minutes depending on the number of tyres and vehicle type. Our fitter will work efficiently with minimal disruption to your day.",
+                ],
+                [
+                  "What brands of tyres do you supply?",
+                  "We stock a wide range of tyres from leading brands including Michelin, Pirelli, Continental, Bridgestone, Goodyear, and more affordable budget options. All tyres are sourced from reputable suppliers.",
+                ],
+                [
+                  "Is there a call-out fee for mobile fitting?",
+                  "No hidden call-out fees. The price you see when booking includes the tyre, fitting, balancing and valve replacement. You only pay what is quoted at the time of booking.",
+                ],
+                [
+                  "Do you balance the tyres after fitting?",
+                  "Yes. All tyres are balanced as standard after fitting using professional-grade mobile balancing equipment to ensure a smooth and safe ride.",
+                ],
+                [
+                  "What payment methods do you accept?",
+                  "We accept all major credit and debit cards, as well as contactless payments. Payment is taken securely at the time of booking or on completion of the job.",
+                ],
+                [
+                  "Can you fit run-flat tyres?",
+                  "Yes. Our fitters are experienced with run-flat tyres. Please ensure you select the correct run-flat option when searching for tyres during the booking process.",
+                ],
+                [
+                  "What if I am not sure what tyre size I need?",
+                  "You can find your tyre size printed on the sidewall of your existing tyre or by entering your vehicle registration into our booking system, which will automatically identify the correct size.",
                 ],
               ].map(([q, a], i) => (
                 <div className="faq-item" key={q}>
