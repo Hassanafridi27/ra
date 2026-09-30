@@ -5,6 +5,9 @@ import {
   MapPin,
   Phone,
   Truck,
+  Battery,
+  Cable,
+  Cog,
   Wrench,
   Zap,
 } from "lucide-react";
@@ -126,6 +129,33 @@ export default function AreaPage({ area, onBack }) {
               When an unexpected puncture or blowout hits, our mobile team can
               be on hand with practical support.
             </p>
+          </div>
+
+          <div className="service-card elevated">
+            <div className="service-icon">
+              <Cable size={26} />
+            </div>
+            <h3>Jump Start</h3>
+            <p>
+              Quick and reliable battery jump-start service to get your vehicle
+              back on the road.
+            </p>
+          </div>
+
+          <div className="service-card elevated">
+            <div className="service-icon">
+              <Battery size={26} />
+            </div>
+            <h3>Battery Replacement</h3>
+            <p>Convenient mobile battery replacement at your location.</p>
+          </div>
+
+          <div className="service-card elevated">
+            <div className="service-icon">
+              <Cog size={26} />
+            </div>
+            <h3>All Types Of Valves And Tpms Sensor Unit Replacement</h3>
+            <p>Practical checks to help keep your vehicle road-ready.</p>
           </div>
         </section>
 
