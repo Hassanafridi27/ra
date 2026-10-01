@@ -81,6 +81,13 @@ const services = [
   },
 ];
 
+const tyreOptions = {
+  width: ["165", "175", "185", "195", "205", "215", "225", "235", "245", "255"],
+  profile: ["40", "45", "50", "55", "60", "65", "70", "75"],
+  rim: ["14", "15", "16", "17", "18", "19", "20"],
+  speed: ["T", "H", "V", "W", "Y"],
+};
+
 const reviews = [
   [
     "Gareth Beaumont",
@@ -148,6 +155,16 @@ export default function App() {
   const [emergencyOptionsOpen, setEmergencyOptionsOpen] = useState(false);
   const [emergencyType, setEmergencyType] = useState("");
   const [emergencyDetailOpen, setEmergencyDetailOpen] = useState(false);
+  const [tyreSize, setTyreSize] = useState({
+    width: "",
+    profile: "",
+    rim: "",
+    speed: "",
+  });
+  const [tyreSearchOpen, setTyreSearchOpen] = useState(false);
+  const [tyreSearchStep, setTyreSearchStep] = useState("result");
+  const [areaPostcode, setAreaPostcode] = useState("");
+  const [postcodeChecked, setPostcodeChecked] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const reviewTrackRef = useRef(null);
   const [selectedArea, setSelectedArea] = useState(() => {
@@ -230,6 +247,22 @@ export default function App() {
       });
     }
   };
+
+  const handleTyreSearch = (event) => {
+    event.preventDefault();
+    setAreaPostcode("");
+    setPostcodeChecked(false);
+    setTyreSearchStep("result");
+    setTyreSearchOpen(true);
+  };
+
+  const handlePostcodeCheck = (event) => {
+    event.preventDefault();
+    setAreaPostcode((postcode) => postcode.trim().toUpperCase());
+    setPostcodeChecked(true);
+  };
+
+  const selectedTyreSize = `${tyreSize.width}/${tyreSize.profile} R${tyreSize.rim} ${tyreSize.speed}`;
 
   if (selectedArea) {
     return <AreaPage area={selectedArea} onBack={closeArea} />;
@@ -433,25 +466,38 @@ export default function App() {
                   </button>
                 </div>
               ) : (
-                <div className="booking-form size-form">
+                <form
+                  className="booking-form size-form"
+                  onSubmit={handleTyreSearch}
+                >
                   {["Width", "Profile", "Rim", "Speed"].map((x) => (
                     <label key={x}>
                       <span>{x}</span>
-                      <select defaultValue="">
+                      <select
+                        required
+                        value={tyreSize[x.toLowerCase()]}
+                        onChange={(event) =>
+                          setTyreSize((currentSize) => ({
+                            ...currentSize,
+                            [x.toLowerCase()]: event.target.value,
+                          }))
+                        }
+                      >
                         <option value="" disabled>
                           Select
                         </option>
-                        <option>205</option>
-                        <option>215</option>
-                        <option>225</option>
-                        <option>235</option>
+                        {tyreOptions[x.toLowerCase()].map((option) => (
+                          <option key={option} value={option}>
+                            {option}
+                          </option>
+                        ))}
                       </select>
                     </label>
                   ))}
-                  <button className="btn btn-blue">
+                  <button className="btn btn-blue" type="submit">
                     Search Tyres <ArrowRight size={18} />
                   </button>
-                </div>
+                </form>
               )}
               <small className="booking-note">
                 Please double-check your tyre size before booking.
@@ -459,6 +505,127 @@ export default function App() {
             </div>
           </div>
         </section>
+
+        {tyreSearchOpen && (
+          <div
+            className="tyre-search-backdrop"
+            onClick={() => setTyreSearchOpen(false)}
+          >
+            <section
+              className="tyre-search-modal"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="tyre-search-title"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <button
+                className="emergency-modal-close"
+                type="button"
+                aria-label="Close tyre search"
+                onClick={() => setTyreSearchOpen(false)}
+              >
+                <X size={20} />
+              </button>
+              <ol className="tyre-search-progress" aria-label="Search steps">
+                <li className={tyreSearchStep === "result" ? "active" : "done"}>
+                  Tyre result
+                </li>
+                <li className={tyreSearchStep === "postcode" ? "active" : ""}>
+                  Check your area
+                </li>
+              </ol>
+              {tyreSearchStep === "result" ? (
+                <>
+                  <span className="section-kicker">SAMPLE TYRE RESULT</span>
+                  <h2 id="tyre-search-title">
+                    Tyres matching {selectedTyreSize}
+                  </h2>
+                  <article className="sample-tyre-card">
+                    <div className="sample-tyre-visual" aria-hidden="true">
+                      <div />
+                    </div>
+                    <div className="sample-tyre-copy">
+                      <span className="sample-listing-label">
+                        DEMONSTRATION LISTING
+                      </span>
+                      <h3>RA RoadPro Touring</h3>
+                      <p>
+                        An example all-season touring tyre for everyday driving,
+                        designed for dependable grip and a comfortable ride.
+                      </p>
+                      <strong>From £59.99 per tyre</strong>
+                      <small>
+                        Sample price only. Final tyre options and fitted price
+                        depend on your postcode and availability.
+                      </small>
+                    </div>
+                  </article>
+                  <button
+                    className="btn btn-blue tyre-search-next"
+                    type="button"
+                    onClick={() => setTyreSearchStep("postcode")}
+                  >
+                    Check fitting availability <ArrowRight size={18} />
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    className="emergency-back"
+                    type="button"
+                    onClick={() => {
+                      setTyreSearchStep("result");
+                      setPostcodeChecked(false);
+                    }}
+                  >
+                    <ChevronLeft size={17} /> Back to tyre result
+                  </button>
+                  <span className="section-kicker">STEP 2: SERVICE AREA</span>
+                  <h2 id="tyre-search-title">Check your fitting area</h2>
+                  <p className="tyre-area-intro">
+                    Enter the postcode where you need the tyres fitted. Your
+                    postcode is used to check the service area and confirm the
+                    final fitting price.
+                  </p>
+                  <div className="tyre-size-summary">
+                    Sample tyre size: <strong>{selectedTyreSize}</strong>
+                  </div>
+                  <form
+                    className="postcode-check-form"
+                    onSubmit={handlePostcodeCheck}
+                  >
+                    <label htmlFor="tyre-search-postcode">Your postcode</label>
+                    <div>
+                      <input
+                        id="tyre-search-postcode"
+                        autoComplete="postal-code"
+                        placeholder="e.g. M43 7UR"
+                        pattern="[A-Za-z]{1,2}[0-9][A-Za-z0-9]? ?[0-9][A-Za-z]{2}"
+                        title="Enter a valid UK postcode"
+                        required
+                        value={areaPostcode}
+                        onChange={(event) => {
+                          setAreaPostcode(event.target.value);
+                          setPostcodeChecked(false);
+                        }}
+                      />
+                      <button className="btn btn-blue" type="submit">
+                        Check postcode
+                      </button>
+                    </div>
+                  </form>
+                  {postcodeChecked && (
+                    <p className="postcode-check-result" role="status">
+                      We&apos;ve noted {areaPostcode}. Contact RA Mobile Tyres
+                      to confirm live service availability, stock and your
+                      final fitted price.
+                    </p>
+                  )}
+                </>
+              )}
+            </section>
+          </div>
+        )}
 
         {/* TRUST ROW */}
         <section className="trust-row">

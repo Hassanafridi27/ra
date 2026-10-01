@@ -5,6 +5,29 @@ beforeEach(() => {
   window.scrollTo = jest.fn();
 });
 
+test("opens a sample tyre modal and checks the entered postcode", () => {
+  render(<App />);
+
+  const tyreSizeFields = screen.getAllByRole("combobox");
+  ["205", "55", "16", "V"].forEach((value, index) => {
+    fireEvent.change(tyreSizeFields[index], { target: { value } });
+  });
+  fireEvent.click(screen.getByRole("button", { name: /search tyres/i }));
+
+  expect(screen.getByRole("dialog")).toHaveTextContent("205/55 R16 V");
+  expect(screen.getByText("RA RoadPro Touring")).toBeInTheDocument();
+
+  fireEvent.click(
+    screen.getByRole("button", { name: /check fitting availability/i }),
+  );
+  fireEvent.change(screen.getByLabelText(/your postcode/i), {
+    target: { value: "M43 7UR" },
+  });
+  fireEvent.click(screen.getByRole("button", { name: /check postcode/i }));
+
+  expect(screen.getByRole("status")).toHaveTextContent("M43 7UR");
+});
+
 test("opens an area page when selecting an area from the site", () => {
   render(<App />);
 
