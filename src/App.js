@@ -145,6 +145,9 @@ export default function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [bookingMode, setBookingMode] = useState("size");
   const [faqOpen, setFaqOpen] = useState(0);
+  const [emergencyOptionsOpen, setEmergencyOptionsOpen] = useState(false);
+  const [emergencyType, setEmergencyType] = useState("");
+  const [emergencyDetailOpen, setEmergencyDetailOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const reviewTrackRef = useRef(null);
   const [selectedArea, setSelectedArea] = useState(() => {
@@ -514,14 +517,317 @@ export default function App() {
                   </div>
                   <h3>{title}</h3>
                   <p>{text}</p>
-                  <button onClick={() => scrollTo("contact")}>
-                    Learn more <ArrowRight size={16} />
+                  <button
+                    onClick={() => {
+                      if (title === "Emergency Call-Out") {
+                        setEmergencyType("");
+                        setEmergencyDetailOpen(false);
+                        setEmergencyOptionsOpen(true);
+                      } else {
+                        scrollTo("contact");
+                      }
+                    }}
+                  >
+                    {title === "Emergency Call-Out"
+                      ? "Choose emergency service"
+                      : "Learn more"}{" "}
+                    <ArrowRight size={16} />
                   </button>
                 </article>
               ))}
             </div>
           </div>
         </section>
+
+        {emergencyOptionsOpen && (
+          <div
+            className="emergency-modal-backdrop"
+            onClick={() => setEmergencyOptionsOpen(false)}
+          >
+            <section
+              className={
+                emergencyDetailOpen
+                  ? "emergency-modal emergency-modal-large"
+                  : "emergency-modal"
+              }
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="emergency-modal-title"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <button
+                className="emergency-modal-close"
+                type="button"
+                aria-label="Close emergency options"
+                onClick={() => setEmergencyOptionsOpen(false)}
+              >
+                <X size={20} />
+              </button>
+              {emergencyDetailOpen ? (
+                <div className="emergency-detail">
+                  <button
+                    className="emergency-back"
+                    type="button"
+                    onClick={() => {
+                      setEmergencyDetailOpen(false);
+                      setEmergencyType("");
+                    }}
+                  >
+                    <ChevronLeft size={17} /> Back to emergency options
+                  </button>
+                  {emergencyType === "motorway" ? (
+                    <>
+                      <span className="section-kicker">
+                        MOTORWAY EMERGENCY TYRE BREAKDOWN
+                      </span>
+                      <h2 id="emergency-modal-title">
+                        Need Emergency Motorway Tyre Assistance?
+                      </h2>
+                      <p>
+                        Don&apos;t arrange recovery just to visit a tyre shop if
+                        the tyre can safely be replaced where you are. Let the
+                        tyre shop come to you.
+                      </p>
+                      <p className="emergency-detail-lead">
+                        RA Mobile Tyres — Emergency Mobile Tyre Fitting When You
+                        Need It Most.
+                      </p>
+                      <div className="emergency-detail-cta">
+                        <strong>GET EMERGENCY ASSISTANCE</strong>
+                        <a className="btn btn-blue" href={PHONE_LINK}>
+                          <Phone size={17} /> CALL NOW
+                        </a>
+                      </div>
+                      <h3>
+                        Stranded on the motorway with a flat or damaged tyre?
+                      </h3>
+                      <p>
+                        A tyre blowout, puncture or damaged tyre on the motorway
+                        can leave you in a stressful and potentially dangerous
+                        situation. RA Mobile Tyres provides an emergency mobile
+                        tyre fitting service designed to get you safely back on
+                        the road as quickly as possible.
+                      </p>
+                      <p>
+                        Our mobile tyre fitting vans can come directly to your
+                        location, assess the problem and, where it is safe to do
+                        so, replace your tyre at the roadside.
+                      </p>
+                      <h3>Emergency Mobile Tyre Assistance</h3>
+                      <p>
+                        Whether you&apos;ve suffered a sudden blowout, severe
+                        puncture, sidewall damage or a tyre that is no longer
+                        safe to drive on, our team is ready to help.
+                      </p>
+                      <h3>Don&apos;t Risk Driving on a Damaged Tyre</h3>
+                      <p>
+                        Continuing to drive on a flat or severely damaged tyre
+                        can cause further damage to your wheel and vehicle and
+                        may put you and other road users at risk.
+                      </p>
+                      <p>
+                        If you&apos;re in a safe location, contact RA Mobile
+                        Tyres and we&apos;ll arrange mobile tyre assistance to
+                        come to you.
+                      </p>
+                      <h3>What Happens Next?</h3>
+                      <ol className="emergency-steps">
+                        <li>
+                          <strong>Tell us where you are</strong>
+                          <span>
+                            Send us your motorway, junction, service area or
+                            precise location.
+                          </span>
+                        </li>
+                        <li>
+                          <strong>Tell us your vehicle and tyre size</strong>
+                          <span>
+                            We&apos;ll identify the correct tyre and confirm
+                            available options.
+                          </span>
+                        </li>
+                        <li>
+                          <strong>Receive your price</strong>
+                          <span>
+                            We&apos;ll confirm the cost before dispatch.
+                          </span>
+                        </li>
+                        <li>
+                          <strong>We come to you</strong>
+                          <span>
+                            Our mobile tyre fitter travels to your location with
+                            the equipment required to replace your tyre.
+                          </span>
+                        </li>
+                        <li>
+                          <strong>Get back on the road</strong>
+                          <span>
+                            Once your tyre has been replaced and checked, you
+                            can continue your journey.
+                          </span>
+                        </li>
+                      </ol>
+                    </>
+                  ) : (
+                    <>
+                      <span className="section-kicker">
+                        ROADSIDE EMERGENCY TYRE BREAKDOWN
+                      </span>
+                      <h2 id="emergency-modal-title">
+                        Emergency Tyre Help When You&apos;re Stranded
+                      </h2>
+                      <p>
+                        A tyre problem can happen without warning. That&apos;s
+                        why our emergency service is built around one simple
+                        idea:
+                      </p>
+                      <p className="emergency-detail-lead">
+                        You don&apos;t come to the tyre shop. We bring the tyre
+                        shop to you.
+                      </p>
+                      <p>
+                        For fast roadside tyre assistance, contact RA Mobile
+                        Tyres.
+                      </p>
+                      <div className="emergency-detail-cta">
+                        <strong>GET EMERGENCY ASSISTANCE</strong>
+                        <a className="btn btn-blue" href={PHONE_LINK}>
+                          <Phone size={17} /> CALL NOW
+                        </a>
+                      </div>
+                      <h3>Flat tyre? Blowout? Stranded at the roadside?</h3>
+                      <p>Don&apos;t let a damaged tyre leave you stuck.</p>
+                      <p>
+                        RA Mobile Tyres brings the tyre shop directly to you,
+                        providing emergency mobile tyre fitting when you&apos;re
+                        stranded at the roadside and unable to continue your
+                        journey safely.
+                      </p>
+                      <p>
+                        Whether you&apos;re stuck on a main road, outside work,
+                        in a car park or away from home, simply tell us where
+                        you are and what tyre you need.
+                      </p>
+                      <h3>Emergency Tyre Replacement at Your Location</h3>
+                      <p>
+                        Our mobile tyre fitting vans are equipped to replace
+                        tyres away from a traditional tyre shop.
+                      </p>
+                      <p>We can help with:</p>
+                      <ul className="emergency-help-list">
+                        <li>Flat tyres</li>
+                        <li>Tyre blowouts</li>
+                        <li>Punctures</li>
+                        <li>Sidewall damage</li>
+                        <li>Pothole-damaged tyres</li>
+                        <li>Split or damaged tyres</li>
+                        <li>Emergency tyre replacement</li>
+                        <li>Vehicles without a spare wheel</li>
+                        <li>Multiple tyre replacements</li>
+                      </ul>
+                      <h3>How It Works</h3>
+                      <ol className="emergency-steps">
+                        <li>
+                          <strong>Contact RA Mobile Tyres</strong>
+                          <span>
+                            Give us your location and vehicle registration.
+                          </span>
+                        </li>
+                        <li>
+                          <strong>We&apos;ll identify your tyre</strong>
+                          <span>
+                            Provide your tyre size if you know it, or send us a
+                            clear photograph of the tyre markings.
+                          </span>
+                        </li>
+                        <li>
+                          <strong>Choose your tyre</strong>
+                          <span>
+                            Subject to availability, we&apos;ll provide suitable
+                            tyre options and confirm your price.
+                          </span>
+                        </li>
+                        <li>
+                          <strong>Mobile fitter dispatched</strong>
+                          <span>
+                            We&apos;ll send a mobile tyre fitter directly to
+                            your location.
+                          </span>
+                        </li>
+                        <li>
+                          <strong>Tyre fitted at the roadside</strong>
+                          <span>
+                            Where it is safe to carry out the work, we&apos;ll
+                            replace the damaged tyre and get you moving again.
+                          </span>
+                        </li>
+                      </ol>
+                      <h3>No Spare Tyre? No Problem.</h3>
+                      <p>
+                        Many modern vehicles no longer carry a full-size spare
+                        wheel. If your tyre cannot be safely driven on, that
+                        doesn&apos;t necessarily mean you need to have the
+                        vehicle recovered to a garage.
+                      </p>
+                      <p>
+                        Our mobile service can bring a replacement tyre and
+                        fitting equipment directly to you.
+                      </p>
+                    </>
+                  )}
+                </div>
+              ) : (
+                <>
+                  <span className="section-kicker">EMERGENCY TYRE SUPPORT</span>
+                  <h2 id="emergency-modal-title">
+                    What do you need help with?
+                  </h2>
+                  <p className="emergency-modal-intro">
+                    Choose the situation that best describes where you are.
+                  </p>
+                  <div className="emergency-options">
+                    <button
+                      className="emergency-option"
+                      type="button"
+                      onClick={() => {
+                        setEmergencyType("motorway");
+                        setEmergencyDetailOpen(true);
+                      }}
+                    >
+                      <span className="emergency-option-title">
+                        Emergency motorway breakdown
+                      </span>
+                      <span className="emergency-option-description">
+                        Urgent tyre help after a motorway breakdown.
+                      </span>
+                    </button>
+                    <button
+                      className="emergency-option"
+                      type="button"
+                      onClick={() => {
+                        setEmergencyType("roadside");
+                        setEmergencyDetailOpen(true);
+                      }}
+                    >
+                      <span className="emergency-option-title">
+                        Emergency roadside breakdown
+                      </span>
+                      <span className="emergency-option-description">
+                        Mobile support for a tyre problem at the roadside.
+                      </span>
+                    </button>
+                  </div>
+                  <a
+                    className="btn btn-blue emergency-call-button"
+                    href={PHONE_LINK}
+                  >
+                    <Phone size={17} /> Call now for an immediate response
+                  </a>
+                </>
+              )}
+            </section>
+          </div>
+        )}
 
         {/* SPLIT */}
         <section className="split-section">
