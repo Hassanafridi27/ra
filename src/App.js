@@ -722,14 +722,14 @@ export default function App() {
               aria-labelledby="emergency-modal-title"
               onClick={(event) => event.stopPropagation()}
             >
-              <button
+              {/* <button
                 className="emergency-modal-close"
                 type="button"
                 aria-label="Close emergency options"
                 onClick={() => setEmergencyOptionsOpen(false)}
               >
                 <X size={20} />
-              </button>
+              </button> */}
               {emergencyDetailOpen ? (
                 <div className="emergency-detail">
                   <button
