@@ -935,7 +935,9 @@ img {
   border: 12px solid #20272d;
   border-radius: 50%;
   background: repeating-conic-gradient(#323b42 0deg 4deg, #151b1f 4deg 8deg);
-  box-shadow: inset 0 0 0 7px #58636b, inset 0 0 0 12px #d4dce1;
+  box-shadow:
+    inset 0 0 0 7px #58636b,
+    inset 0 0 0 12px #d4dce1;
 }
 .sample-listing-label {
   color: var(--blue);

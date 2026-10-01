@@ -155,6 +155,7 @@ export default function App() {
   const [emergencyOptionsOpen, setEmergencyOptionsOpen] = useState(false);
   const [emergencyType, setEmergencyType] = useState("");
   const [emergencyDetailOpen, setEmergencyDetailOpen] = useState(false);
+  const [batteryModalOpen, setBatteryModalOpen] = useState(false);
   const [tyreSize, setTyreSize] = useState({
     width: "",
     profile: "",
@@ -617,8 +618,8 @@ export default function App() {
                   {postcodeChecked && (
                     <p className="postcode-check-result" role="status">
                       We&apos;ve noted {areaPostcode}. Contact RA Mobile Tyres
-                      to confirm live service availability, stock and your
-                      final fitted price.
+                      to confirm live service availability, stock and your final
+                      fitted price.
                     </p>
                   )}
                 </>
@@ -690,6 +691,8 @@ export default function App() {
                         setEmergencyType("");
                         setEmergencyDetailOpen(false);
                         setEmergencyOptionsOpen(true);
+                      } else if (title === "Battery Replacement") {
+                        setBatteryModalOpen(true);
                       } else {
                         scrollTo("contact");
                       }
@@ -697,7 +700,9 @@ export default function App() {
                   >
                     {title === "Emergency Call-Out"
                       ? "Choose emergency service"
-                      : "Learn more"}{" "}
+                      : title === "Battery Replacement"
+                        ? "Battery help & prices"
+                        : "Learn more"}{" "}
                     <ArrowRight size={16} />
                   </button>
                 </article>
@@ -992,6 +997,87 @@ export default function App() {
                   </a>
                 </>
               )}
+            </section>
+          </div>
+        )}
+
+        {batteryModalOpen && (
+          <div
+            className="emergency-modal-backdrop"
+            onClick={() => setBatteryModalOpen(false)}
+          >
+            <section
+              className="emergency-modal emergency-modal-large"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="battery-modal-title"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <button
+                className="emergency-modal-close"
+                type="button"
+                aria-label="Close battery replacement information"
+                onClick={() => setBatteryModalOpen(false)}
+              >
+                <X size={20} />
+              </button>
+              <div className="emergency-detail">
+                <span className="section-kicker">
+                  MOBILE BATTERY REPLACEMENT
+                </span>
+                <h2 id="battery-modal-title">
+                  Call Now for an Immediate Response!
+                </h2>
+                <p className="emergency-detail-lead">
+                  <Phone size={17} /> Speak Directly to Our Team for Battery
+                  Prices, Stock Availability &amp; Emergency Callouts.
+                </p>
+                <p className="emergency-detail-lead">
+                  Getting You Back on the Road, Fast!
+                </p>
+                <h3>
+                  Mobile Battery Replacement — Fast Response, Wherever You Are!
+                </h3>
+                <p>
+                  Flat Battery? Don&apos;t Wait — Call Us Now for Immediate
+                  Assistance!
+                </p>
+                <p>
+                  We provide professional mobile battery replacement services,
+                  bringing the right battery directly to your location. Whether
+                  you&apos;re stranded at the roadside, stuck at home, at work
+                  or dealing with a battery failure, we&apos;re here to help.
+                </p>
+                <div className="emergency-detail-cta">
+                  <strong>
+                    GET AN INSTANT BATTERY PRICE &amp; CHECK AVAILABILITY
+                  </strong>
+                  <a className="btn btn-blue" href={PHONE_LINK}>
+                    <Phone size={17} /> CALL NOW
+                  </a>
+                </div>
+                <h3>Why Choose Us?</h3>
+                <ul className="emergency-help-list">
+                  <li>24/7 Emergency Response Time</li>
+                  <li>Fast Mobile Callouts — We Come to You!</li>
+                  <li>Competitive Prices on Quality Batteries</li>
+                  <li>Battery Testing &amp; Professional Installation</li>
+                  <li>Roadside, Home &amp; Workplace Assistance</li>
+                </ul>
+                <h3>Get an Instant Battery Price &amp; Check Availability</h3>
+                <p>
+                  Don&apos;t waste time searching for the right battery. Simply
+                  give us your vehicle registration number and location, and our
+                  team will check compatible batteries, confirm prices and
+                  advise you on the earliest available callout.
+                </p>
+                <a
+                  className="btn btn-blue emergency-call-button"
+                  href={PHONE_LINK}
+                >
+                  <Phone size={17} /> CALL NOW FOR AN IMMEDIATE RESPONSE
+                </a>
+              </div>
             </section>
           </div>
         )}
